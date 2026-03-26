@@ -1,21 +1,41 @@
-Date,Category,Item_ID,Weight_Percentage,Target_Weight,Avg_Selling_Price,Normalized_Unit_Price,Method
-2026-03-27,Staples,Staples_Atta_5kg,6.25,5000,306.0,6.12,Scraped
-2026-03-27,Staples,Staples_Basmati_1kg,6.25,1000,95.0,9.5,Scraped
-2026-03-27,Staples,Staples_ToorDal_1kg,6.25,1000,,,Failed (Day 1 OOS)
-2026-03-27,Staples,Staples_Sugar_1kg,6.25,1000,60.0,6.0,Scraped
-2026-03-27,Dairy,Dairy_TonedMilk_1L,5.0,1000,,,Failed (Day 1 OOS)
-2026-03-27,Dairy,Dairy_Butter_100g,5.0,100,,,Failed (Day 1 OOS)
-2026-03-27,Dairy,Dairy_Eggs_6pk,5.0,6,,,Failed (Day 1 OOS)
-2026-03-27,Dairy,Dairy_Paneer_200g,5.0,200,89.0,44.5,Scraped
-2026-03-27,Produce,Produce_Onion_1kg,5.0,1000,41.0,4.1000000000000005,Scraped
-2026-03-27,Produce,Produce_Potato_1kg,5.0,1000,36.0,3.5999999999999996,Scraped
-2026-03-27,Produce,Produce_Tomato_1kg,5.0,1000,,,Failed (Day 1 OOS)
-2026-03-27,Produce,Produce_Banana_6pcs,5.0,6,,,Failed (Day 1 OOS)
-2026-03-27,Oils,Oils_Sunflower_1L,7.5,1000,,,Failed (Day 1 OOS)
-2026-03-27,Oils,Oils_Mustard_1L,7.5,1000,,,Failed (Day 1 OOS)
-2026-03-27,Household,Household_Soap_3x100g,3.33,300,,,Failed (Day 1 OOS)
-2026-03-27,Household,Household_Toothpaste_100g,3.33,100,,,Failed (Day 1 OOS)
-2026-03-27,Household,Household_SurfExcel_1kg,3.34,1000,138.0,13.8,Scraped
-2026-03-27,Snacks,Snacks_Tea_250g,3.33,250,114.0,45.6,Scraped
-2026-03-27,Snacks,Snacks_Coffee_50g,3.33,50,,,Failed (Day 1 OOS)
-2026-03-27,Snacks,Snacks_ParleG_250g,3.34,250,27.0,10.8,Scraped
+Date,Category,Item_ID,Weight_Percentage,Target_Weight,Daily_Market_Normalized_Price,Method
+2026-03-27,Staples,Staples_Atta_5kg,6.25,5000.0,6.12,Scraped
+2026-03-27,Staples,Staples_Basmati_1kg,6.25,1000.0,9.5,Scraped
+2026-03-27,Staples,Staples_ToorDal_1kg,6.25,500.0,17.4,Scraped
+2026-03-27,Staples,Staples_Sugar_1kg,6.25,1000.0,6.0,Scraped
+2026-03-27,Dairy,Dairy_TonedMilk_1L,5.0,,7.5,Scraped
+2026-03-27,Dairy,Dairy_Butter_100g,5.0,,56.99999999999999,Scraped
+2026-03-27,Dairy,Dairy_Eggs_6pk,5.0,,1140.0,Scraped
+2026-03-27,Dairy,Dairy_Paneer_200g,5.0,,44.5,Scraped
+2026-03-27,Produce,Produce_Onion_1kg,5.0,1000.0,4.1000000000000005,Scraped
+2026-03-27,Produce,Produce_Potato_1kg,5.0,1000.0,3.5999999999999996,Scraped
+2026-03-27,Produce,Produce_Tomato_1kg,5.0,1000.0,5.4,Scraped
+2026-03-27,Produce,Produce_Banana_6pcs,5.0,6.0,0.1,Scraped
+2026-03-27,Oils,Oils_Sunflower_1L,7.5,840.0,18.571428571428573,Scraped
+2026-03-27,Oils,Oils_Mustard_1L,7.5,1000.0,16.8,Scraped
+2026-03-27,Household,Household_Soap_3x100g,3.33,125.0,272.0,Scraped
+2026-03-27,Household,Household_Toothpaste_100g,3.33,150.0,86.66666666666667,Scraped
+2026-03-27,Household,Household_SurfExcel_1kg,3.34,1000.0,13.8,Scraped
+2026-03-27,Snacks,Snacks_Tea_250g,3.33,250.0,45.6,Scraped
+2026-03-27,Snacks,Snacks_Coffee_50g,3.33,50.0,495.55555555555554,Scraped
+2026-03-27,Snacks,Snacks_ParleG_250g,3.34,250.0,10.8,Scraped
+2026-03-27,Staples,Staples_Atta_5kg,6.25,5000.0,6.12,Scraped
+2026-03-27,Staples,Staples_Basmati_1kg,6.25,1000.0,9.5,Scraped
+2026-03-27,Staples,Staples_ToorDal_1kg,6.25,500.0,17.4,Scraped
+2026-03-27,Staples,Staples_Sugar_1kg,6.25,1000.0,6.0,Scraped
+2026-03-27,Dairy,Dairy_TonedMilk_1L,5.0,1000.0,7.5,Scraped
+2026-03-27,Dairy,Dairy_Butter_100g,5.0,500.0,56.99999999999999,Scraped
+2026-03-27,Dairy,Dairy_Eggs_6pk,5.0,10.0,1140.0,Scraped
+2026-03-27,Dairy,Dairy_Paneer_200g,5.0,200.0,44.5,Scraped
+2026-03-27,Produce,Produce_Onion_1kg,5.0,1000.0,4.1000000000000005,Scraped
+2026-03-27,Produce,Produce_Potato_1kg,5.0,1000.0,3.5999999999999996,Scraped
+2026-03-27,Produce,Produce_Tomato_1kg,5.0,1000.0,5.4,Scraped
+2026-03-27,Produce,Produce_Banana_6pcs,5.0,6.0,0.1,Scraped
+2026-03-27,Oils,Oils_Sunflower_1L,7.5,840.0,18.571428571428573,Scraped
+2026-03-27,Oils,Oils_Mustard_1L,7.5,1000.0,16.8,Scraped
+2026-03-27,Household,Household_Soap_3x100g,3.33,125.0,272.0,Scraped
+2026-03-27,Household,Household_Toothpaste_100g,3.33,150.0,86.66666666666667,Scraped
+2026-03-27,Household,Household_SurfExcel_1kg,3.34,1000.0,13.8,Scraped
+2026-03-27,Snacks,Snacks_Tea_250g,3.33,250.0,45.6,Scraped
+2026-03-27,Snacks,Snacks_Coffee_50g,3.33,50.0,495.55555555555554,Scraped
+2026-03-27,Snacks,Snacks_ParleG_250g,3.34,250.0,10.8,Scraped
