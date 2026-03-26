@@ -121,6 +121,7 @@ async def initialization_mode(page, basket):
     updated = False
     for item_id, details in basket.items():
         if details.get('target_weight_grams') is None or details.get('target_weight_grams') == 0:
+            print(f"Initializing target weight for {item_id}...")
             # Try BigBasket first (Primary)
             _, weight, err = await scrape_bigbasket(page, details['bigbasket_url'])
             
@@ -152,26 +153,21 @@ async def run_scraper(headless=True):
 
     # Load yesterday's data for imputation
     prev_data = None
-    if os.path.exists(DATA_FILE):
-        prev_data = pd.read_csv(DATA_FILE)
-        if not prev_data.empty:
-            prev_data['Date'] = pd.to_datetime(prev_data['Date'])
-            latest_date = prev_data['Date'].max()
-            prev_data = prev_data[prev_data['Date'] == latest_date]
+    if os.path.exists(DATA_FILE) and os.path.getsize(DATA_FILE) > 0:
+        try:
+            prev_data = pd.read_csv(DATA_FILE)
+            if not prev_data.empty:
+                prev_data['Date'] = pd.to_datetime(prev_data['Date'])
+                latest_date = prev_data['Date'].max()
+                prev_data = prev_data[prev_data['Date'] == latest_date]
+        except:
+            pass
 
     daily_results = []
     current_date = datetime.now().strftime('%Y-%m-%d')
 
     async with async_playwright() as p:
-        try:
-            browser = await p.chromium.launch(headless=headless)
-        except:
-            if headless:
-                print("Headless launch failed, falling back to non-headless mode.")
-                browser = await p.chromium.launch(headless=False)
-            else:
-                raise
-
+        browser = await p.chromium.launch(headless=headless)
         context = await browser.new_context(
             geolocation=GEOLOCATION,
             permissions=["geolocation"],
@@ -191,8 +187,12 @@ async def run_scraper(headless=True):
         # Step 3: Scraping & Normalization Engine
         for item_id, details in basket.items():
             print(f"Scraping {item_id}...")
-            target_weight = details.get('target_weight_grams', 1000) # Fallback to 1000 if discovery failed
-            base_unit = 1 if target_weight == 6 else 100 # 6 units target -> base 1, else base 100g
+            
+            # Robust piece-based detection
+            if "pcs" in item_id.lower() or "pk" in item_id.lower():
+                base_unit = 1
+            else:
+                base_unit = 100
 
             # Platform Scrapes
             bb_price, bb_weight, _ = await scrape_bigbasket(page, details['bigbasket_url'])
@@ -225,17 +225,26 @@ async def run_scraper(headless=True):
                 'Category': details['category'],
                 'Item_ID': item_id,
                 'Weight_Percentage': details['weight_percentage'],
-                'Target_Weight': target_weight,
+                'Target_Weight': details.get('target_weight_grams'),
                 'Daily_Market_Normalized_Price': daily_market_norm,
                 'Method': method
             })
 
         await browser.close()
 
-    # Save to CSV
+    # Save to CSV (Anti-duplication logic)
     df = pd.DataFrame(daily_results)
-    if os.path.exists(DATA_FILE):
-        df.to_csv(DATA_FILE, mode='a', header=False, index=False)
+    
+    if os.path.exists(DATA_FILE) and os.path.getsize(DATA_FILE) > 0:
+        try:
+            existing_df = pd.read_csv(DATA_FILE)
+            # Ensure today's date exists before filtering
+            if 'Date' in existing_df.columns:
+                existing_df = existing_df[existing_df['Date'] != current_date]
+            final_df = pd.concat([existing_df, df], ignore_index=True)
+            final_df.to_csv(DATA_FILE, index=False)
+        except:
+             df.to_csv(DATA_FILE, index=False)
     else:
         df.to_csv(DATA_FILE, index=False)
     

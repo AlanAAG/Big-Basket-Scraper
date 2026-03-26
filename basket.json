@@ -44,7 +44,7 @@
   "Dairy_Eggs_6pk": {
     "category": "Dairy",
     "weight_percentage": 5.0,
-    "target_weight_grams": 10.0,
+    "target_weight_grams": 6,
     "bigbasket_url": "https://www.bigbasket.com/pd/40211590/eggoz-white-farm-fresh-eggs-omega-3-rich-with-no-ddgs-hormone-steroids-6-pcs/",
     "zepto_url": "https://www.zepto.com/pn/eggoz-protein-rich-farm-fresh-white-eggs/pvid/3e5b5972-959f-4862-b1f9-b478d4c710a4"
   },
