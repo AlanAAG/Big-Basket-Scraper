@@ -195,18 +195,23 @@ async def run_scraper(headless=True):
                 base_unit = 100
 
             # Platform Scrapes
-            bb_price, bb_weight, _ = await scrape_bigbasket(page, details['bigbasket_url'])
-            z_price, z_weight, _ = await scrape_zepto(page, details['zepto_url'])
+            bb_price, _, _ = await scrape_bigbasket(page, details['bigbasket_url'])
+            z_price, _, _ = await scrape_zepto(page, details['zepto_url'])
 
             # Normalize Platform Prices Individually
             normalized_prices = []
-            if bb_price and bb_weight:
-                norm_bb = (bb_price / bb_weight) * base_unit
-                normalized_prices.append(norm_bb)
             
-            if z_price and z_weight:
-                norm_z = (z_price / z_weight) * base_unit
-                normalized_prices.append(norm_z)
+            # CRITICAL: Use verified target_weight_grams from JSON for all math
+            target_weight = details.get('target_weight_grams')
+            
+            if target_weight:
+                if bb_price:
+                    norm_bb = (bb_price / target_weight) * base_unit
+                    normalized_prices.append(norm_bb)
+                
+                if z_price:
+                    norm_z = (z_price / target_weight) * base_unit
+                    normalized_prices.append(norm_z)
 
             # Market Averaging
             if normalized_prices:
@@ -225,7 +230,7 @@ async def run_scraper(headless=True):
                 'Category': details['category'],
                 'Item_ID': item_id,
                 'Weight_Percentage': details['weight_percentage'],
-                'Target_Weight': details.get('target_weight_grams'),
+                'Target_Weight': target_weight,
                 'Daily_Market_Normalized_Price': daily_market_norm,
                 'Method': method
             })
@@ -238,7 +243,6 @@ async def run_scraper(headless=True):
     if os.path.exists(DATA_FILE) and os.path.getsize(DATA_FILE) > 0:
         try:
             existing_df = pd.read_csv(DATA_FILE)
-            # Ensure today's date exists before filtering
             if 'Date' in existing_df.columns:
                 existing_df = existing_df[existing_df['Date'] != current_date]
             final_df = pd.concat([existing_df, df], ignore_index=True)
