@@ -4,7 +4,7 @@ import os
 import re
 import pandas as pd
 from datetime import datetime
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
 from playwright_stealth import Stealth
 
 # Configuration
@@ -43,7 +43,10 @@ def parse_weight(weight_str):
 async def scrape_bigbasket(page, url):
     """Scrapes price and weight from BigBasket."""
     try:
-        await page.goto(url, wait_until="networkidle", timeout=60000)
+        try:
+            await page.goto(url, wait_until="networkidle", timeout=60000)
+        except PlaywrightTimeoutError:
+            return None, None, "Timeout Error"
         await asyncio.sleep(2)
         
         title = await page.title()
@@ -77,7 +80,10 @@ async def scrape_bigbasket(page, url):
 async def scrape_zepto(page, url):
     """Scrapes price and weight from Zepto."""
     try:
-        await page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        try:
+            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        except PlaywrightTimeoutError:
+            return None, None, "Timeout Error"
         await asyncio.sleep(5)
         
         title = await page.title()

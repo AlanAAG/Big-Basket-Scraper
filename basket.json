@@ -13,7 +13,7 @@
     "bigbasket_url": "https://www.bigbasket.com/pd/40356009/india-gate-everyday-pure-basmati-rice-1-kg/",
     "zepto_url": "https://www.zepto.com/pn/india-gate-all-rounder-feast-rozzana-basmati-rice-aged-rice-fluffy-and-non-sticky/pvid/7a91e366-3ec1-410b-8d41-83d011eb3a86"
   },
-  "Staples_ToorDal_1kg": {
+  "Staples_ToorDal_500g": {
     "category": "Staples",
     "weight_percentage": 6.25,
     "target_weight_grams": 500,
@@ -34,7 +34,7 @@
     "bigbasket_url": "https://www.bigbasket.com/pd/306926/amul-homogenised-toned-milk-1-l-carton/",
     "zepto_url": "https://www.zepto.com/pn/amul-taaza-homogenised-toned-milk-tetra-pack/pvid/84eae511-5edb-4a22-875e-5aa94976c2d6"
   },
-  "Dairy_Butter_100g": {
+  "Dairy_Butter_500g": {
     "category": "Dairy",
     "weight_percentage": 5.0,
     "target_weight_grams": 500.0,
@@ -83,7 +83,7 @@
     "bigbasket_url": "https://www.bigbasket.com/pd/40179390/fresho-baby-banana-robusta-1-kg/",
     "zepto_url": "https://www.zepto.com/pn/banana-nendran/pvid/ff1a1bc0-24a3-4663-8e53-48690cf15c3c"
   },
-  "Oils_Sunflower_1L": {
+  "Oils_Sunflower_840g": {
     "category": "Oils",
     "weight_percentage": 7.5,
     "target_weight_grams": 840,
@@ -97,14 +97,14 @@
     "bigbasket_url": "https://www.bigbasket.com/pd/276756/fortune-fortune-premium-kachi-ghani-pure-mustard-oil-1l-pet-bottle/",
     "zepto_url": "https://www.zepto.com/pn/fortune-kachi-ghani-mustard-oil-bottle/pvid/d442ea2f-fd6c-45c9-8a02-44b6c9e74361"
   },
-  "Household_Soap_3x100g": {
+  "Household_Soap_5x125g": {
     "category": "Household",
     "weight_percentage": 3.33,
     "target_weight_grams": 625,
     "bigbasket_url": "https://www.bigbasket.com/pd/40016743/dove-cream-beauty-bathing-bar-125-g/",
     "zepto_url": "https://www.zepto.com/pn/dove-serum-beauty-bar-soft-smooth-moisturised-skin/pvid/b4f991eb-a0a3-4402-97db-132feacebe2e"
   },
-  "Household_Toothpaste_100g": {
+  "Household_Toothpaste_150g": {
     "category": "Household",
     "weight_percentage": 3.33,
     "target_weight_grams": 150,
