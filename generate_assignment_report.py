@@ -65,9 +65,9 @@ def generate_report():
         # Column A: Date
         ws3[f'A{row_idx}'] = date
         
-        # Inject AVERAGEIFS for each Category
+        # Inject AVERAGEIFS for each Category with IFERROR wrapper
         for cat, letter in zip(categories, cat_cols):
-            ws3[f'{letter}{row_idx}'] = f"=AVERAGEIFS('Raw Daily Price Data'!$I:$I, 'Raw Daily Price Data'!$A:$A, $A{row_idx}, 'Raw Daily Price Data'!$B:$B, {letter}$1)"
+            ws3[f'{letter}{row_idx}'] = f"=IFERROR(AVERAGEIFS('Raw Daily Price Data'!$I:$I, 'Raw Daily Price Data'!$A:$A, $A{row_idx}, 'Raw Daily Price Data'!$B:$B, {letter}$1), 0)"
             
         # Inject Dynamic Overall CPI Formula with Weight Re-balancing
         weighted_sum_components = [f"({letter}{row_idx}*{weights[cat]})" for cat, letter in zip(categories, cat_cols)]
@@ -78,6 +78,17 @@ def generate_report():
         
         # Overall CPI calculation string
         ws3[f'H{row_idx}'] = f'=({weighted_sum}) / ({active_weights})'
+
+    # --- Final Polish: Number Formatting ---
+    # Sheet 2: Base Price (H) and Price Relative (I)
+    for row in ws2.iter_rows(min_row=2, min_col=8, max_col=9):
+        for cell in row:
+            cell.number_format = '0.00'
+
+    # Sheet 3: Category Indices (B-G) and Overall CPI (H)
+    for row in ws3.iter_rows(min_row=2, min_col=2, max_col=8):
+        for cell in row:
+            cell.number_format = '0.00'
         
     # Save the native Excel workbook with live formulas
     wb.save('Assignment_Deliverable.xlsx')
