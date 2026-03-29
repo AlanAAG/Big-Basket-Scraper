@@ -44,8 +44,9 @@ def generate_report():
         
     # Inject Excel Formulas for Base Price (Column H) and Price Relative (Column I)
     for row_idx in range(2, ws2.max_row + 1):
-        # Base Price XLOOKUP pointing to Day 1 boundaries ($C$2:$C$21 and $F$2:$F$21)
-        ws2[f'H{row_idx}'] = f'=XLOOKUP(C{row_idx}, $C$2:$C$21, $F$2:$F$21)'
+        # Base Price VLOOKUP pointing to entire columns ($C:$F). 
+        # Since data is sorted by Date, the first match found will always be the Day 1 price.
+        ws2[f'H{row_idx}'] = f'=VLOOKUP(C{row_idx}, $C:$F, 4, FALSE)'
         # Price Relative Calculation
         ws2[f'I{row_idx}'] = f'=(F{row_idx}/H{row_idx})*100'
 
