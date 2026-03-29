@@ -188,7 +188,7 @@ async def run_scraper(headless=True):
         await stealth_applier.apply_stealth_async(page)
 
         # Step 2: Autonomous Weight Discovery
-        basket = await initialization_mode(page, basket)
+        # basket = await initialization_mode(page, basket)
 
         # Step 3: Scraping & Normalization Engine
         for item_id, details in basket.items():
